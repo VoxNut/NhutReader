@@ -1,0 +1,19 @@
+# Android ignore
+.gradle
+.idea
+.kotlin
+build
+local.properties
+.cxx
+*.apk
+*.aar
+*.log
+
+# Git history recreation tools
+_project_backup/
+recreate_git_history.py
+github accounts.txt
+
+# Excluded directories for realistic diff size
+third_party/
+README.md
