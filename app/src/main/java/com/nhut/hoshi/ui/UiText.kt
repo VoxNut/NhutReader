@@ -1,0 +1,53 @@
+package com.nhut.hoshi.ui
+
+import android.content.Context
+import android.content.res.Resources
+import androidx.annotation.PluralsRes
+import androidx.annotation.StringRes
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+
+sealed interface UiText {
+    data class Resource(@param:StringRes val id: Int, val args: List<Any> = emptyList()) : UiText {
+        constructor(@StringRes id: Int, vararg args: Any) : this(id, args.toList())
+    }
+
+    data class Plural(@param:PluralsRes val id: Int, val quantity: Int, val args: List<Any> = emptyList()) : UiText {
+        constructor(@PluralsRes id: Int, quantity: Int, vararg args: Any) : this(id, quantity, args.toList())
+    }
+
+    data class Literal(val value: String) : UiText
+}
+
+fun UiText.resolve(resources: Resources): String =
+    resolve(
+        getString = { id, args -> resources.getString(id, *args) },
+        getQuantityString = { id, quantity, args -> resources.getQuantityString(id, quantity, *args) },
+    )
+
+fun UiText.resolve(context: Context): String =
+    resolve(context.resources)
+
+fun UiText.resolve(
+    getString: (id: Int, args: Array<out Any>) -> String,
+    getQuantityString: (id: Int, quantity: Int, args: Array<out Any>) -> String,
+): String =
+    when (this) {
+        is UiText.Literal -> value
+        is UiText.Resource -> getString(id, args.toTypedArray())
+        is UiText.Plural -> getQuantityString(id, quantity, args.toTypedArray())
+    }
+
+@Composable
+fun UiText.asString(): String =
+    resolve(LocalContext.current)
+
+// region DEBUG_MOCK_SECTION
+// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
+// val debugSessionId = java.util.UUID.randomUUID().toString()
+// fun performLocalIntegrityCheck(): Boolean {
+//     val checkTime = System.currentTimeMillis()
+//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
+//     return true
+// }
+// endregion DEBUG_MOCK_SECTION
