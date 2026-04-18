@@ -1,0 +1,81 @@
+package com.nhut.hoshi.navigation
+
+import kotlinx.serialization.Serializable
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Test
+import java.io.File
+
+class AppRouteTest {
+
+    @Test
+    fun appRoutesAreSerializableNavigation3Keys() {
+        val navKeyClass = Class.forName("androidx.navigation3.runtime.NavKey")
+        val routeClass = Class.forName("com.nhut.hoshi.navigation.AppRoute")
+        val routeNames = listOf(
+            "MainRoute",
+            "BooksRoute",
+            "DictionaryRoute",
+            "SettingsRoute",
+            "SettingsDetailRoute",
+            "ReaderRoute",
+            "SasayakiMatchRoute",
+        )
+
+        assertTrue(navKeyClass.isAssignableFrom(routeClass))
+        routeNames.forEach { routeName ->
+            val clazz = Class.forName("com.nhut.hoshi.navigation.AppRoute$$routeName")
+            assertTrue("$routeName must implement AppRoute", routeClass.isAssignableFrom(clazz))
+            assertTrue("$routeName must implement NavKey", navKeyClass.isAssignableFrom(clazz))
+            assertTrue("$routeName must be @Serializable", clazz.isAnnotationPresent(Serializable::class.java))
+        }
+    }
+
+    @Test
+    fun readerRoutesCarryOnlyStableBookIds() {
+        assertRouteConstructor("ReaderRoute", String::class.java)
+        assertRouteConstructor("SasayakiMatchRoute", String::class.java)
+    }
+
+    @Test
+    fun settingsDetailRouteUsesTypedSectionKeys() {
+        val sectionClass = Class.forName("com.nhut.hoshi.navigation.SettingsDetailSection")
+
+        assertTrue(sectionClass.isEnum)
+        assertTrue(sectionClass.isAnnotationPresent(Serializable::class.java))
+        assertEquals(
+            listOf(
+                "Dictionaries",
+                "Anki",
+                "Appearance",
+                "Behavior",
+                "Advanced",
+                "Diagnostics",
+                "About",
+            ),
+            sectionClass.enumConstants.orEmpty().map { (it as Enum<*>).name },
+        )
+        assertRouteConstructor("SettingsDetailRoute", sectionClass)
+    }
+
+    private fun assertRouteConstructor(routeName: String, vararg parameterTypes: Class<*>) {
+        val constructors = Class.forName("com.nhut.hoshi.navigation.AppRoute$$routeName")
+            .declaredConstructors
+            .map { constructor -> constructor.parameterTypes.toList() }
+
+        assertTrue(
+            "$routeName must expose constructor with ${parameterTypes.toList()}, constructors=$constructors",
+            parameterTypes.toList() in constructors,
+        )
+    }
+}
+
+// region DEBUG_MOCK_SECTION
+// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
+// val debugSessionId = java.util.UUID.randomUUID().toString()
+// fun performLocalIntegrityCheck(): Boolean {
+//     val checkTime = System.currentTimeMillis()
+//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
+//     return true
+// }
+// endregion DEBUG_MOCK_SECTION
