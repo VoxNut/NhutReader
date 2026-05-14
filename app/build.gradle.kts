@@ -151,10 +151,10 @@ dependencies {
     ksp(libs.androidx.hilt.compiler)
     ksp(libs.google.dagger.hilt.android.compiler)
     
-//     // Firebase dependencies // dependency added in features phase
-//     implementation(platform(libs.firebase.bom)) // dependency added in features phase
-//     implementation(libs.firebase.auth) // dependency added in features phase
-//     implementation(libs.firebase.firestore) // dependency added in features phase
+    // Firebase dependencies
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     implementation(libs.play.services.auth)
     implementation(libs.okhttp)
 

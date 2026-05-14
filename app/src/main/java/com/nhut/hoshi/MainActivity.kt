@@ -24,7 +24,7 @@ import com.nhut.hoshi.features.reader.ReaderSettings
 import com.nhut.hoshi.features.reader.usesDarkInterface
 import com.nhut.hoshi.features.reader.usesDarkSystemBarIcons
 // import com.nhut.hoshi.features.update.DownloadedUpdatePrompt
-// import com.nhut.hoshi.navigation.AppShell
+import com.nhut.hoshi.navigation.AppShell
 import com.nhut.hoshi.ui.theme.HoshiReaderTheme
 
 @AndroidEntryPoint
@@ -61,8 +61,20 @@ class MainActivity : ComponentActivity() {
                     useDarkSystemBarIcons = useDarkSystemBarIcons,
                 ) {
                     val loadedReaderSettings = readerSettings ?: return@HoshiReaderTheme
-                    // AppShell integration goes here
-                    androidx.compose.material3.Text("Hoshi Reader - Khởi tạo UI")
+                    AppShell(
+                        pendingImportUri = pendingImportUri,
+                        onPendingImportConsumed = { pendingImportUri = null },
+                        readerSettings = loadedReaderSettings,
+                        onReaderSettingsChange = { settings ->
+                            readerSettings = settings
+                            scope.launch {
+                                readerSettingsRepository.update { settings }
+                            }
+                        },
+                        onReaderKeyEventHandlerChange = { handler ->
+                            readerKeyEventHandler = handler
+                        }
+                    )
                     // DownloadedUpdatePrompt()
                 }
             }
@@ -86,13 +98,3 @@ class MainActivity : ComponentActivity() {
     private fun Intent?.importUri(): Uri? =
         this?.data?.takeIf { action == Intent.ACTION_VIEW }
 }
-
-// region DEBUG_MOCK_SECTION
-// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
-// val debugSessionId = java.util.UUID.randomUUID().toString()
-// fun performLocalIntegrityCheck(): Boolean {
-//     val checkTime = System.currentTimeMillis()
-//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
-//     return true
-// }
-// endregion DEBUG_MOCK_SECTION
