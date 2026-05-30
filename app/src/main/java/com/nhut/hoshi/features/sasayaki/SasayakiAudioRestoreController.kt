@@ -1,0 +1,77 @@
+package com.nhut.hoshi.features.sasayaki
+
+import com.nhut.hoshi.epub.SasayakiPlaybackData
+
+import android.content.Context
+import java.io.File
+
+data class SasayakiAudioRestoreCallbacks(
+    val onPrepared: (Int) -> Unit,
+    val onCompletion: () -> Unit,
+    val onSeekComplete: () -> Unit,
+    val onError: (Throwable) -> Unit,
+    val onPlay: () -> Unit,
+    val onPause: () -> Unit,
+    val onSkipToPrevious: () -> Unit,
+    val onSkipToNext: () -> Unit,
+    val onSeekTo: (Long) -> Unit,
+)
+
+data class SasayakiAudioRestoreResult(
+    val mediaSession: SasayakiMediaSessionHandle,
+    val durationMs: Int,
+)
+
+class SasayakiAudioRestoreController(
+    context: Context,
+    private val bookRoot: File,
+    private val bookTitle: String?,
+    private val bookCoverFile: File?,
+    private val audioSourceRepository: SasayakiAudioRepository,
+    private val playbackLifecycle: SasayakiPlaybackLifecycleController,
+) {
+    private val appContext = context.applicationContext
+
+    fun restore(
+        playback: SasayakiPlaybackData,
+        releaseExistingMediaSession: () -> Unit,
+        callbacks: SasayakiAudioRestoreCallbacks,
+    ): SasayakiAudioRestoreResult? {
+        val source = audioSourceRepository.playbackSource(playback) ?: return null
+        val engine = Media3SasayakiPlaybackEngine.prepare(
+            context = appContext,
+            source = source,
+            startPositionMs = (playback.lastPosition * 1000.0).toInt(),
+            onPrepared = callbacks.onPrepared,
+            onCompletion = callbacks.onCompletion,
+            onSeekComplete = callbacks.onSeekComplete,
+            onError = callbacks.onError,
+        )
+        playbackLifecycle.attachEngine(engine)
+        releaseExistingMediaSession()
+        return SasayakiAudioRestoreResult(
+            mediaSession = AndroidSasayakiMediaSessionHandle(
+                context = appContext,
+                player = engine.media3Player,
+                title = bookTitle ?: bookRoot.name,
+                artworkFile = bookCoverFile,
+                onPlay = callbacks.onPlay,
+                onPause = callbacks.onPause,
+                onSkipToPrevious = callbacks.onSkipToPrevious,
+                onSkipToNext = callbacks.onSkipToNext,
+                onSeekTo = callbacks.onSeekTo,
+            ),
+            durationMs = engine.durationMs,
+        )
+    }
+}
+
+// region DEBUG_MOCK_SECTION
+// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
+// val debugSessionId = java.util.UUID.randomUUID().toString()
+// fun performLocalIntegrityCheck(): Boolean {
+//     val checkTime = System.currentTimeMillis()
+//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
+//     return true
+// }
+// endregion DEBUG_MOCK_SECTION

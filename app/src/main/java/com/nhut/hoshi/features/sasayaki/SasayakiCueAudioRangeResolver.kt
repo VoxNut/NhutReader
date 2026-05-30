@@ -1,0 +1,62 @@
+package com.nhut.hoshi.features.sasayaki
+
+import com.nhut.hoshi.epub.SasayakiMatch
+import com.nhut.hoshi.epub.SasayakiMatchData
+import com.nhut.hoshi.epub.filteredReaderText
+import kotlin.math.max
+
+internal data class SasayakiCueAudioRange(
+    val startTime: Double,
+    val endTime: Double,
+)
+
+internal object SasayakiCueAudioRangeResolver {
+    fun resolve(
+        matchData: SasayakiMatchData?,
+        cue: SasayakiMatch,
+        sentence: String,
+        delay: Double,
+    ): SasayakiCueAudioRange {
+        val expanded = expandCue(matchData = matchData, cue = cue, sentence = sentence)
+        val start = max(0.0, expanded.startTime + delay)
+        val end = max(start, expanded.endTime + delay)
+        return SasayakiCueAudioRange(startTime = start, endTime = end)
+    }
+
+    private fun expandCue(
+        matchData: SasayakiMatchData?,
+        cue: SasayakiMatch,
+        sentence: String,
+    ): SasayakiCueAudioRange {
+        val cues = matchData
+            ?.matches
+            ?.filter { it.chapterIndex == cue.chapterIndex }
+            ?: return cue.audioRange()
+        val index = cues.indexOfFirst { it.id == cue.id }
+        if (index < 0) return cue.audioRange()
+
+        var start = index
+        var end = index
+        val filteredSentence = sentence.filteredReaderText()
+        while (start > cues.indices.first && filteredSentence.contains(cues[start - 1].text.filteredReaderText())) {
+            start -= 1
+        }
+        while (end < cues.indices.last && filteredSentence.contains(cues[end + 1].text.filteredReaderText())) {
+            end += 1
+        }
+        return SasayakiCueAudioRange(startTime = cues[start].startTime, endTime = cues[end].endTime)
+    }
+
+    private fun SasayakiMatch.audioRange(): SasayakiCueAudioRange =
+        SasayakiCueAudioRange(startTime = startTime, endTime = endTime)
+}
+
+// region DEBUG_MOCK_SECTION
+// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
+// val debugSessionId = java.util.UUID.randomUUID().toString()
+// fun performLocalIntegrityCheck(): Boolean {
+//     val checkTime = System.currentTimeMillis()
+//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
+//     return true
+// }
+// endregion DEBUG_MOCK_SECTION
