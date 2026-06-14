@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 import com.nhut.hoshi.features.reader.ReaderSettings
 import com.nhut.hoshi.features.reader.usesDarkInterface
 import com.nhut.hoshi.features.reader.usesDarkSystemBarIcons
-// import com.nhut.hoshi.features.update.DownloadedUpdatePrompt
+import com.nhut.hoshi.features.update.DownloadedUpdatePrompt
 import com.nhut.hoshi.navigation.AppShell
 import com.nhut.hoshi.ui.theme.HoshiReaderTheme
 
@@ -75,7 +75,7 @@ class MainActivity : ComponentActivity() {
                             readerKeyEventHandler = handler
                         }
                     )
-                    // DownloadedUpdatePrompt()
+                    DownloadedUpdatePrompt()
                 }
             }
         }
