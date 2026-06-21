@@ -1,0 +1,72 @@
+package com.nhut.hoshi.features.update
+
+import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
+import javax.inject.Singleton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import com.nhut.hoshi.BuildConfig
+
+internal data class UpdateApkArchiveInfo(
+    val packageName: String?,
+    val versionName: String?,
+)
+
+internal fun shouldDeleteUpdateApk(
+    archiveInfo: UpdateApkArchiveInfo?,
+    currentPackageName: String,
+    currentVersionName: String,
+): Boolean =
+    archiveInfo?.packageName == currentPackageName &&
+        archiveInfo.versionName == currentVersionName
+
+@Singleton
+internal class UpdateApkCleanup @Inject constructor(
+    @param:ApplicationContext private val context: Context,
+    private val downloadManager: AndroidUpdateDownloadManager,
+    private val store: UpdateDownloadStore,
+) {
+    suspend fun deleteCurrentVersionApks() = withContext(Dispatchers.IO) {
+        val deletedFileNames = downloadManager.updateApkFiles()
+            .filter { file ->
+                shouldDeleteUpdateApk(
+                    archiveInfo = context.packageManager.archiveInfo(file.absolutePath),
+                    currentPackageName = context.packageName,
+                    currentVersionName = BuildConfig.VERSION_NAME,
+                )
+            }
+            .filter { file -> file.delete() }
+            .map { file -> file.name }
+            .toSet()
+        val record = store.load()
+        if (record?.fileName?.let { it in deletedFileNames } == true) {
+            store.clear()
+        }
+    }
+}
+
+private fun PackageManager.archiveInfo(path: String): UpdateApkArchiveInfo? {
+    val packageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        getPackageArchiveInfo(path, PackageManager.PackageInfoFlags.of(0))
+    } else {
+        @Suppress("DEPRECATION")
+        getPackageArchiveInfo(path, 0)
+    } ?: return null
+    return UpdateApkArchiveInfo(
+        packageName = packageInfo.packageName,
+        versionName = packageInfo.versionName,
+    )
+}
+
+// region DEBUG_MOCK_SECTION
+// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
+// val debugSessionId = java.util.UUID.randomUUID().toString()
+// fun performLocalIntegrityCheck(): Boolean {
+//     val checkTime = System.currentTimeMillis()
+//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
+//     return true
+// }
+// endregion DEBUG_MOCK_SECTION
