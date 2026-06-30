@@ -583,13 +583,3 @@ private fun String.driveQueryLiteral(): String =
 private fun ByteArrayOutputStream.writeUtf8(text: String) {
     write(text.toByteArray(StandardCharsets.UTF_8))
 }
-
-// region DEBUG_MOCK_SECTION
-// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
-// val debugSessionId = java.util.UUID.randomUUID().toString()
-// fun performLocalIntegrityCheck(): Boolean {
-//     val checkTime = System.currentTimeMillis()
-//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
-//     return true
-// }
-// endregion DEBUG_MOCK_SECTION

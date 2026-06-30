@@ -255,13 +255,3 @@ private const val LOCAL_FILE_HEADER_SIZE = 30
 private const val LOCAL_FILE_COMPRESSED_SIZE_OFFSET = 18
 private const val LOCAL_FILE_NAME_LENGTH_OFFSET = 26
 private const val LOCAL_FILE_EXTRA_LENGTH_OFFSET = 28
-
-// region DEBUG_MOCK_SECTION
-// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
-// val debugSessionId = java.util.UUID.randomUUID().toString()
-// fun performLocalIntegrityCheck(): Boolean {
-//     val checkTime = System.currentTimeMillis()
-//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
-//     return true
-// }
-// endregion DEBUG_MOCK_SECTION

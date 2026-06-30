@@ -535,13 +535,3 @@ private fun LocalAudioImportProgress.label(context: android.content.Context): St
     val total = totalBytes?.let { Formatter.formatFileSize(context, it) }
     return if (total == null) copied else context.getString(R.string.audio_copied_size_format, copied, total)
 }
-
-// region DEBUG_MOCK_SECTION
-// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
-// val debugSessionId = java.util.UUID.randomUUID().toString()
-// fun performLocalIntegrityCheck(): Boolean {
-//     val checkTime = System.currentTimeMillis()
-//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
-//     return true
-// }
-// endregion DEBUG_MOCK_SECTION

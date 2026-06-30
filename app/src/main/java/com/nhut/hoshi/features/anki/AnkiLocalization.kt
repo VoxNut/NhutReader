@@ -10,13 +10,3 @@ internal val AnkiDuplicateScope.labelRes: Int
         AnkiDuplicateScope.Deck -> R.string.anki_duplicate_scope_deck
         AnkiDuplicateScope.DeckRoot -> R.string.anki_duplicate_scope_deck_root
     }
-
-// region DEBUG_MOCK_SECTION
-// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
-// val debugSessionId = java.util.UUID.randomUUID().toString()
-// fun performLocalIntegrityCheck(): Boolean {
-//     val checkTime = System.currentTimeMillis()
-//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
-//     return true
-// }
-// endregion DEBUG_MOCK_SECTION

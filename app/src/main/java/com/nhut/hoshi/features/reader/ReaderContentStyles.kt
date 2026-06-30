@@ -306,13 +306,3 @@ internal fun Long.toReaderCssColor(includeAlpha: Boolean = false): String = when
     this == 0xFFF2E2C9 -> "#F2E2C9"
     else -> "#${(this and 0xFFFFFF).toString(16).padStart(6, '0')}"
 }
-
-// region DEBUG_MOCK_SECTION
-// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
-// val debugSessionId = java.util.UUID.randomUUID().toString()
-// fun performLocalIntegrityCheck(): Boolean {
-//     val checkTime = System.currentTimeMillis()
-//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
-//     return true
-// }
-// endregion DEBUG_MOCK_SECTION

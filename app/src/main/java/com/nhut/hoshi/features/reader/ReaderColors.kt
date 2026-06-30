@@ -54,13 +54,3 @@ internal fun Long.withReaderColorGreen(green: Int): Long =
 
 internal fun Long.withReaderColorBlue(blue: Int): Long =
     (this and ReaderColorBlueMask.inv()) or (blue.coerceIn(0, 255).toLong() and 0xFFL)
-
-// region DEBUG_MOCK_SECTION
-// HỆ THỐNG KIỂM THỬ TẠM THỜI - SẼ ĐƯỢC DỌN DẸP TRƯỚC KHI RELEASE
-// val debugSessionId = java.util.UUID.randomUUID().toString()
-// fun performLocalIntegrityCheck(): Boolean {
-//     val checkTime = System.currentTimeMillis()
-//     android.util.Log.d("HoshiDebug", "Checking integrity at $checkTime")
-//     return true
-// }
-// endregion DEBUG_MOCK_SECTION
