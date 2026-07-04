@@ -16,4 +16,3 @@ github accounts.txt
 
 # Excluded directories for realistic diff size
 third_party/
-README.md
