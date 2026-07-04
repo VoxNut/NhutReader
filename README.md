@@ -2,9 +2,9 @@
 
 # Nhut Reader
 
-[Tiếng Việt](README_VI.md)
+**English** | [Tiếng Việt](README_VI.md)
 
-Nhut Reader Android is a lightweight Japanese EPUB reader app for Android, built for immersion learning with Yomitan lookup, Anki card creation, audiobook read-along, and e-ink mode options.
+Nhut Reader is a lightweight, distraction-free Japanese EPUB reader for Android. Built specifically for language immersion, it features Yomitan dictionary integration, direct Anki card creation, read-along audiobook synchronization, AI-powered translations, and e-ink display optimizations.
 
 <table>
   <tr>
@@ -26,10 +26,10 @@ Nhut Reader Android is a lightweight Japanese EPUB reader app for Android, built
     <td><img src="images/sync-settings.jpg" alt="Sync settings" width="100%"></td>
   </tr>
   <tr>
-    <td><img src="images/ai-translation-pop-up.jpg" alt="AI translation pop up" width="100%"></td>
-    <td><img src="images/ai-translation-settings.jpg" alt="AI translation settings" width="100%"></td>
-    <td><img src="images/anki-mining-history.jpg" alt="Anki mining history" width="100%"></td>
-    <td><img src="images/firebase-cloud.jpg" alt="Firebase cloud integration" width="100%"></td>
+    <td><img src="images/ai-translation-pop-up.png" alt="AI translation pop up" width="100%"></td>
+    <td><img src="images/ai-translation-settings.png" alt="AI translation settings" width="100%"></td>
+    <td><img src="images/anki-mining-history.png" alt="Anki mining history" width="100%"></td>
+    <td><img src="images/firebase-cloud.png" alt="Firebase cloud integration" width="100%"></td>
   </tr>
 </table>
 
@@ -37,49 +37,54 @@ Nhut Reader Android is a lightweight Japanese EPUB reader app for Android, built
 
 ## Features
 
-### Bookshelf
-- Import EPUBs individually, in batches, or recursively from folders, and keep reading progress visible from the bookshelf.
-- Organize books with custom shelves.
-- Export EPUBs or pull remote synced books back into the local library.
+### Bookshelf & Library Management
+- **Flexible Imports**: Import EPUBs individually, in batches, or recursively scan entire directories.
+- **Reading Progress**: Track and display progress directly on the bookshelf cover.
+- **Shelves**: Organize your library using custom bookshelves.
+- **Cloud Sync**: Export EPUBs and sync books seamlessly from remote servers.
 
-### Reading
-- Read Japanese books in vertical or horizontal text, with paginated or continuous scrolling.
-- Customize themes, fonts, paragraph spacing, and reader controls, including custom reader themes.
-- Use immersive focus mode, volume-key page turning, and e-ink display options.
-- Open reader images in fullscreen with zoom, copy, save, and share actions.
+### Immersive Reading Experience
+- **Layout Options**: Read Japanese text in vertical (traditional) or horizontal layouts with continuous scroll or paginated modes.
+- **Visual Customization**: Fully adjust spacing, margins, line heights, system or custom fonts, and custom themes (light, dark, sepia).
+- **Physical Controls**: Volume-key page turning and e-ink display options.
+- **Image Viewer**: Open in-book images in fullscreen with zoom, save, copy, and share options.
 
-### Lookup
-- Import, download, update, and manage Yomitan dictionaries.
-- Tap text in the reader, search from the Dictionary tab, or look up selected text from other Android apps.
-- Tap unknown words inside definitions for recursive lookup.
-- Inject custom CSS styles.
-- Use online or local word audio.
+### Advanced Dictionary Lookup
+- **Yomitan Integration**: Import, download, and manage Yomitan dictionaries directly on device.
+- **Text Search & System Lookup**: Lookup words via reader tap, manually search from the Dictionary tab, or share selected text from other Android apps to Nhut Reader.
+- **Recursive Definitions**: Tap on unknown words inside dictionary definitions for nested lookups.
+- **Personalization**: Inject custom CSS styles for popups, choose online or local audio sources.
 
-### AI Translation
-- Translate vocabulary or sentences directly from the reader or lookup popup using Gemini models (such as `gemini-2.5-flash`, `gemini-2.5-pro`, or `gemini-3-flash-preview`).
-- Configure personal Gemini API keys, target translation languages, auto-translation triggers, and select specific AI models.
+### AI-Powered Translation
+- **Gemini Models**: Translate vocabulary or full sentences using state-of-the-art models (such as `gemini-2.5-flash`, `gemini-2.5-pro`, or `gemini-3-flash-preview`).
+- **Auto-Translate**: Trigger translation automatically when tapping a word.
+- **Anki Integration**: Formats sentence translations automatically when mining to highlight keyword occurrences (e.g., `<span class="group">...</span>` and `<span class="highlight">...</span>`).
+- **History Logs**: Automatically saves all translation history to Firebase Firestore.
 
-### Highlights And Statistics
-- Add five-color highlights while reading and jump to them at any time.
-- Track reading statistics, including characters read, time spent, and reading speed, with live display while reading.
+### Highlights & Reading Stats
+- **Multi-color Highlights**: Highlight texts in five colors with simple jump-to navigation.
+- **Reading Statistics**: Live display of character count, time spent, and reading speed while reading.
 
-### Anki Card Mining
-- Create cards through AnkiDroid or AnkiConnect.
-- Use [Lapis](https://github.com/donkuri/lapis)-compatible fields, duplicate checks, and media export.
-- Track all previously mined words and their creation dates inside the mining history log.
+### Anki Flashcard Mining
+- **Seamless Integrations**: Create cards instantly via local AnkiDroid API or remote AnkiConnect.
+- **Custom Templates**: Map fields dynamically (compatible with Lapis format).
+- **Smart Duplicate Checks**: Avoid duplicate notes by verifying checksums across the entire database or deck.
+- **Mining History**: View and manage all previously mined terms with timestamps inside a dedicated history log.
 
-### Audiobook Read-Along
-- Match audiobook subtitle files to book text to highlight the current sentence.
-- Follow highlights with automatic page turning.
-- Control playback speed, skip actions, and Android media controls.
+### Audiobook Read-Along (Sasayaki)
+- **Time-aligned Highlighting**: Synchronize audiobook subtitle files (SRT/WebVTT) with EPUB text to automatically highlight the spoken sentence.
+- **Autoplay & Autoscroll**: Turn pages automatically to keep up with the audio.
+- **Rich Controls**: Adjust playback speed, skip cues forward/backward, and control playback via system media session notifications.
 
-## Privacy And Data
-Nhut Reader Android stores imported books, dictionaries, fonts, audiobook data, reading progress, highlights, statistics, and settings locally in app storage.
+## Privacy & Data
+Nhut Reader stores your books, dictionaries, fonts, reading progress, highlights, statistics, and settings locally on your device.
 
-Google Drive sync uses a user-configured Google Cloud OAuth device-code flow. Anki card mining talks to AnkiDroid or the configured AnkiConnect endpoint. Update checks read GitHub release metadata. Firebase integration is utilized for crash reporting and app stability diagnostics.
+- **Google Drive**: Uses Google Cloud OAuth device-code flow to sync files.
+- **Anki Mining**: Communicates directly with local AnkiDroid database or AnkiConnect endpoints.
+- **Firebase**: Utilized solely for crashes, remote debugging, and translation history synchronization.
 
 ## Attribution
-Nhut Reader Android builds on this ecosystem:
+Nhut Reader is built on top of these amazing projects:
 - [hoshidicts](https://github.com/Manhhao/hoshidicts) and [hoshidicts-kotlin-bridge](https://github.com/Manhhao/hoshidicts-kotlin-bridge) for Yomitan dictionary support.
 - [Yomitan](https://github.com/yomidevs/yomitan) for dictionary format and lookup inspiration.
 - [AnkiDroid](https://github.com/ankidroid/Anki-Android) for Android card creation integration.
