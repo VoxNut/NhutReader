@@ -2,6 +2,8 @@
 
 # Nhut Reader
 
+[Tiếng Việt](README_VI.md)
+
 Nhut Reader Android is a lightweight Japanese EPUB reader app for Android, built for immersion learning with Yomitan lookup, Anki card creation, audiobook read-along, and e-ink mode options.
 
 <table>
@@ -22,6 +24,12 @@ Nhut Reader Android is a lightweight Japanese EPUB reader app for Android, built
     <td><img src="images/dictionary-management.jpg" alt="Dictionary management" width="100%"></td>
     <td><img src="images/anki-card-settings.jpg" alt="Anki card settings" width="100%"></td>
     <td><img src="images/sync-settings.jpg" alt="Sync settings" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="images/ai-translation-pop-up.jpg" alt="AI translation pop up" width="100%"></td>
+    <td><img src="images/ai-translation-settings.jpg" alt="AI translation settings" width="100%"></td>
+    <td><img src="images/anki-mining-history.jpg" alt="Anki mining history" width="100%"></td>
+    <td><img src="images/firebase-cloud.jpg" alt="Firebase cloud integration" width="100%"></td>
   </tr>
 </table>
 
@@ -47,6 +55,10 @@ Nhut Reader Android is a lightweight Japanese EPUB reader app for Android, built
 - Inject custom CSS styles.
 - Use online or local word audio.
 
+### AI Translation
+- Translate vocabulary or sentences directly from the reader or lookup popup using Gemini models (such as `gemini-2.5-flash`, `gemini-2.5-pro`, or `gemini-3-flash-preview`).
+- Configure personal Gemini API keys, target translation languages, auto-translation triggers, and select specific AI models.
+
 ### Highlights And Statistics
 - Add five-color highlights while reading and jump to them at any time.
 - Track reading statistics, including characters read, time spent, and reading speed, with live display while reading.
@@ -54,6 +66,7 @@ Nhut Reader Android is a lightweight Japanese EPUB reader app for Android, built
 ### Anki Card Mining
 - Create cards through AnkiDroid or AnkiConnect.
 - Use [Lapis](https://github.com/donkuri/lapis)-compatible fields, duplicate checks, and media export.
+- Track all previously mined words and their creation dates inside the mining history log.
 
 ### Audiobook Read-Along
 - Match audiobook subtitle files to book text to highlight the current sentence.
@@ -63,7 +76,7 @@ Nhut Reader Android is a lightweight Japanese EPUB reader app for Android, built
 ## Privacy And Data
 Nhut Reader Android stores imported books, dictionaries, fonts, audiobook data, reading progress, highlights, statistics, and settings locally in app storage.
 
-Google Drive sync uses a user-configured Google Cloud OAuth device-code flow. Anki card mining talks to AnkiDroid or the configured AnkiConnect endpoint. Update checks read GitHub release metadata.
+Google Drive sync uses a user-configured Google Cloud OAuth device-code flow. Anki card mining talks to AnkiDroid or the configured AnkiConnect endpoint. Update checks read GitHub release metadata. Firebase integration is utilized for crash reporting and app stability diagnostics.
 
 ## Attribution
 Nhut Reader Android builds on this ecosystem:
