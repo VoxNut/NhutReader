@@ -26,10 +26,10 @@ Nhut Reader is a lightweight, distraction-free Japanese EPUB reader for Android.
     <td><img src="images/sync-settings.jpg" alt="Sync settings" width="100%"></td>
   </tr>
   <tr>
-    <td><img src="images/ai-translation-pop-up.png" alt="AI translation pop up" width="100%"></td>
-    <td><img src="images/ai-translation-settings.png" alt="AI translation settings" width="100%"></td>
-    <td><img src="images/anki-mining-history.png" alt="Anki mining history" width="100%"></td>
-    <td><img src="images/firebase-cloud.png" alt="Firebase cloud integration" width="100%"></td>
+    <td><img src="images/ai-translation-pop-up-v2.png" alt="AI translation pop up" width="100%"></td>
+    <td><img src="images/ai-translation-settings-v2.png" alt="AI translation settings" width="100%"></td>
+    <td><img src="images/anki-mining-history-v2.png" alt="Anki mining history" width="100%"></td>
+    <td><img src="images/firebase-cloud-v2.png" alt="Firebase cloud integration" width="100%"></td>
   </tr>
 </table>
 
