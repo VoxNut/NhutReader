@@ -38,43 +38,43 @@ Nhut Reader is a lightweight, distraction-free Japanese EPUB reader for Android.
 ## Features
 
 ### Bookshelf & Library Management
-- **Flexible Imports**: Import EPUBs individually, in batches, or recursively scan entire directories.
-- **Reading Progress**: Track and display progress directly on the bookshelf cover.
-- **Shelves**: Organize your library using custom bookshelves.
-- **Cloud Sync**: Export EPUBs and sync books seamlessly from remote servers.
+- Import EPUBs individually, in batches, or recursively scan entire directories.
+- Track and display reading progress directly on the bookshelf cover.
+- Organize your library using custom bookshelves.
+- Export EPUBs and sync books seamlessly from remote servers.
 
 ### Immersive Reading Experience
-- **Layout Options**: Read Japanese text in vertical (traditional) or horizontal layouts with continuous scroll or paginated modes.
-- **Visual Customization**: Fully adjust spacing, margins, line heights, system or custom fonts, and custom themes (light, dark, sepia).
-- **Physical Controls**: Volume-key page turning and e-ink display options.
-- **Image Viewer**: Open in-book images in fullscreen with zoom, save, copy, and share options.
+- Read Japanese text in vertical (traditional) or horizontal layouts with continuous scroll or paginated modes.
+- Fully adjust spacing, margins, line heights, system/custom fonts, and themes (light, dark, sepia).
+- Use volume keys to turn pages and optimize the display for e-ink screens.
+- Open in-book images in fullscreen with zoom, save, copy, and share options.
 
 ### Advanced Dictionary Lookup
-- **Yomitan Integration**: Import, download, and manage Yomitan dictionaries directly on device.
-- **Text Search & System Lookup**: Lookup words via reader tap, manually search from the Dictionary tab, or share selected text from other Android apps to Nhut Reader.
-- **Recursive Definitions**: Tap on unknown words inside dictionary definitions for nested lookups.
-- **Personalization**: Inject custom CSS styles for popups, choose online or local audio sources.
+- Import, download, and manage Yomitan dictionaries directly on your device.
+- Look up words via reader tap, manual search in the Dictionary tab, or share selected text from other Android apps.
+- Tap on unknown words inside dictionary definitions for recursive, multi-level lookup.
+- Inject custom CSS styles for popups and choose online or local audio sources.
 
 ### AI-Powered Translation
-- **Gemini Models**: Translate vocabulary or full sentences using state-of-the-art models (such as `gemini-2.5-flash`, `gemini-2.5-pro`, or `gemini-3-flash-preview`).
-- **Auto-Translate**: Trigger translation automatically when tapping a word.
-- **Anki Integration**: Formats sentence translations automatically when mining to highlight keyword occurrences (e.g., `<span class="group">...</span>` and `<span class="highlight">...</span>`).
-- **History Logs**: Automatically saves all translation history to Firebase Firestore.
+- Translate vocabulary or full sentences using Gemini models (such as `gemini-2.5-flash`, `gemini-2.5-pro`, or `gemini-3-flash-preview`).
+- Optionally trigger translation automatically when tapping a word.
+- Format sentence translations automatically to highlight keywords when mining (e.g. wrapping text in `<span class="group">...</span>` and `<span class="highlight">...</span>`).
+- Automatically save translation history to Firebase Firestore.
 
 ### Highlights & Reading Stats
-- **Multi-color Highlights**: Highlight texts in five colors with simple jump-to navigation.
-- **Reading Statistics**: Live display of character count, time spent, and reading speed while reading.
+- Highlight texts in five different colors with easy jump-to navigation.
+- Track reading statistics (character count, reading time, and speed) with live display in the reader toolbar.
 
 ### Anki Flashcard Mining
-- **Seamless Integrations**: Create cards instantly via local AnkiDroid API or remote AnkiConnect.
-- **Custom Templates**: Map fields dynamically (compatible with Lapis format).
-- **Smart Duplicate Checks**: Avoid duplicate notes by verifying checksums across the entire database or deck.
-- **Mining History**: View and manage all previously mined terms with timestamps inside a dedicated history log.
+- Create cards instantly via local AnkiDroid API or remote AnkiConnect.
+- Map card fields dynamically (compatible with Lapis format).
+- Avoid duplicate notes by verifying signed/unsigned checksums across the collection or a specific deck.
+- View and manage all previously mined terms with timestamps inside a dedicated history log.
 
 ### Audiobook Read-Along (Sasayaki)
-- **Time-aligned Highlighting**: Synchronize audiobook subtitle files (SRT/WebVTT) with EPUB text to automatically highlight the spoken sentence.
-- **Autoplay & Autoscroll**: Turn pages automatically to keep up with the audio.
-- **Rich Controls**: Adjust playback speed, skip cues forward/backward, and control playback via system media session notifications.
+- Synchronize audiobook subtitle files (SRT/WebVTT) with EPUB text to automatically highlight the spoken sentence.
+- Turn pages automatically to keep up with the audio.
+- Adjust playback speed, skip cues forward/backward, and control playback via system media notifications.
 
 ## Privacy & Data
 Nhut Reader stores your books, dictionaries, fonts, reading progress, highlights, statistics, and settings locally on your device.
