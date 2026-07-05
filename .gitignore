@@ -16,3 +16,7 @@ github accounts.txt
 
 # Excluded directories for realistic diff size
 third_party/
+
+# Custom document folders
+doc bao cao/
+
