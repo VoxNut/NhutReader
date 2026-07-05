@@ -26,10 +26,10 @@ Nhut Reader is a lightweight, distraction-free Japanese EPUB reader for Android.
     <td><img src="images/sync-settings.jpg" alt="Sync settings" width="100%"></td>
   </tr>
   <tr>
-    <td><img src="images/ai-translation-pop-up-v2.png" alt="AI translation pop up" width="100%"></td>
-    <td><img src="images/ai-translation-settings-v2.png" alt="AI translation settings" width="100%"></td>
-    <td><img src="images/anki-mining-history-v2.png" alt="Anki mining history" width="100%"></td>
-    <td><img src="images/firebase-cloud-v2.png" alt="Firebase cloud integration" width="100%"></td>
+    <td><img src="images/ai-translation-pop-up.png" alt="AI translation pop up" width="100%"></td>
+    <td><img src="images/ai-translation-settings.png" alt="AI translation settings" width="100%"></td>
+    <td><img src="images/anki-mining-history.png" alt="Anki mining history" width="100%"></td>
+    <td><img src="images/firebase-cloud.png" alt="Firebase cloud integration" width="100%"></td>
   </tr>
 </table>
 
@@ -51,7 +51,7 @@ Nhut Reader is a lightweight, distraction-free Japanese EPUB reader for Android.
 
 ### Advanced Dictionary Lookup
 - Import, download, and manage Yomitan dictionaries directly on your device.
-- Look up words via reader tap, manual search in the Dictionary tab, or share selected text from other Android apps.
+- Look up words via reader tap, manual search in the Dictionary tab, or share selected text from other Android apps to Nhut Reader.
 - Tap on unknown words inside dictionary definitions for recursive, multi-level lookup.
 - Inject custom CSS styles for popups and choose online or local audio sources.
 
@@ -59,11 +59,15 @@ Nhut Reader is a lightweight, distraction-free Japanese EPUB reader for Android.
 - Translate vocabulary or full sentences using Gemini models (such as `gemini-2.5-flash`, `gemini-2.5-pro`, or `gemini-3-flash-preview`).
 - Optionally trigger translation automatically when tapping a word.
 - Format sentence translations automatically to highlight keywords when mining (e.g. wrapping text in `<span class="group">...</span>` and `<span class="highlight">...</span>`).
-- Automatically save translation history to Firebase Firestore.
 
 ### Highlights & Reading Stats
 - Highlight texts in five different colors with easy jump-to navigation.
 - Track reading statistics (character count, reading time, and speed) with live display in the reader toolbar.
+
+### Firebase Cloud Synchronization
+- Authenticate securely using Firebase Auth with Google Sign-In.
+- Synchronize and back up your reading highlights and custom notes to Cloud Firestore.
+- Sync translation history in real-time to back up your looked-up and translated sentences.
 
 ### Anki Flashcard Mining
 - Create cards instantly via local AnkiDroid API or remote AnkiConnect.
