@@ -53,14 +53,14 @@
     <string name="anki_ai_translate_sentence_description">Automatically translate context sentence to English using Gemini</string>
     <string name="anki_ai_translate_field">AI Translation Target Field</string>
     <string name="anki_ai_translate_field_description">Anki field name to write translation to (e.g. sentenceEng)</string>
-    <string name="anki_history_title">Anki Mining History</string>
+    <string name="anki_history_title" comment="Screen title, intentionally same as row label.">Anki Mining History</string>
     <string name="anki_history_total_cards">Total cards added: %1$d</string>
     <string name="anki_history_search_hint">Search cards, sentences, meanings...</string>
     <string name="anki_history_stat_total_cards">Total Cards</string>
     <string name="anki_history_stat_books">Books Mined</string>
     <string name="anki_history_show_meaning">Show Meaning</string>
     <string name="anki_history_hide_meaning">Hide Meaning</string>
-    <string name="anki_history_row_label">Anki Mining History</string>
+    <string name="anki_history_row_label" comment="Settings row label, intentionally same as screen title.">Anki Mining History</string>
     <string name="anki_history_row_description">View stats, search, and manage mined cards</string>
     <string name="anki_history_sort_newest">Date Added (Newest)</string>
     <string name="anki_history_sort_oldest">Date Added (Oldest)</string>
@@ -552,11 +552,11 @@
     <string name="sasayaki_matching">Matching...</string>
     <string name="sasayaki_current_match">Current Match</string>
     <string name="sasayaki_match_rate">Match Rate</string>
-    <string name="advanced_gemini_translation">Gemini Translation</string>
+    <string name="advanced_gemini_translation" comment="Settings row label, intentionally same as settings screen title.">Gemini Translation</string>
     <string name="advanced_gemini_translation_subtitle">AI-powered translation for selected text</string>
-    <string name="advanced_firebase">Firebase Cloud</string>
+    <string name="advanced_firebase" comment="Settings row label, intentionally same as Firebase settings screen title.">Firebase Cloud</string>
     <string name="advanced_firebase_subtitle">Sign in and sync data across devices</string>
-    <string name="gemini_settings_title">Gemini Translation</string>
+    <string name="gemini_settings_title" comment="Settings screen title, intentionally same as row label.">Gemini Translation</string>
     <string name="gemini_model_title">Gemini Model</string>
     <string name="gemini_api_key">API Key</string>
     <string name="gemini_api_key_hint">Enter your Gemini API key</string>
@@ -565,7 +565,7 @@
     <string name="gemini_api_key_saved">API key saved</string>
     <string name="gemini_using_default_key">Using default key</string>
     <string name="gemini_api_key_visibility">Toggle API key visibility</string>
-    <string name="firebase_settings_title">Firebase Cloud</string>
+    <string name="firebase_settings_title" comment="Settings screen title, intentionally same as row label.">Firebase Cloud</string>
     <string name="firebase_signed_in_as">Signed in as %1$s</string>
     <string name="firebase_not_signed_in">Not signed in</string>
     <string name="firebase_sign_in">Sign in with Google</string>

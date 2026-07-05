@@ -20,3 +20,14 @@ third_party/
 # Custom document folders
 doc bao cao/
 
+# Secrets and credentials
+app/google-services.json
+*.jks
+
+# Backups and diagrams
+*.bak
+diagrams/
+
+# Academic reports
+*.docx
+*.pdf
